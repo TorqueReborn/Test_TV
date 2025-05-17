@@ -1,7 +1,9 @@
 package com.ghostreborn.testtv
 
 import android.content.Context
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
 import com.bumptech.glide.Glide
@@ -13,11 +15,15 @@ class CardPresenter: Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
         mContext = parent.context
         val cardView = ImageCardView(mContext)
-        cardView.cardType = ImageCardView.CARD_TYPE_MAIN_ONLY
+        cardView.cardType = ImageCardView.CARD_TYPE_FLAG_CONTENT
         cardView.isFocusable = true
         cardView.isFocusableInTouchMode = true
+        val titleText = cardView.findViewById<TextView>(androidx.leanback.R.id.title_text)
+        titleText.textSize = 20f
+        cardView.infoVisibility = View.VISIBLE
         return ViewHolder(cardView)
     }
+
 
     override fun onBindViewHolder(
         viewHolder: ViewHolder,
