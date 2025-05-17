@@ -3,10 +3,12 @@ package com.ghostreborn.testtv
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.scaleMatrix
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
 import coil.imageLoader
 import coil.request.ImageRequest
+import coil.size.Scale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,7 +38,8 @@ class MainFragment: BrowseSupportFragment() {
         mManager.drawable = defaultBackground
         CoroutineScope(Dispatchers.IO).launch {
             val request = ImageRequest.Builder(requireActivity())
-                .data("https://wp.youtube-anime.com/s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-YCDoj1EkAxFn.jpg?w=250")
+                .data("https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg")
+                .scale(Scale.FILL)
                 .build()
 
             val result = activity?.imageLoader?.execute(request)
