@@ -3,9 +3,12 @@ package com.ghostreborn.testtv
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.scaleMatrix
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
+import androidx.leanback.widget.ArrayObjectAdapter
+import androidx.leanback.widget.HeaderItem
+import androidx.leanback.widget.ListRow
+import androidx.leanback.widget.ListRowPresenter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.size.Scale
@@ -21,11 +24,33 @@ class MainFragment: BrowseSupportFragment() {
 
         setupUIElements()
         prepareBackgroundManager()
+        loadRows()
+    }
+
+    private fun loadRows() {
+        val animeList = getAnimeList()
+        val rowsAdapter = ArrayObjectAdapter(ListRowPresenter())
+        val cardPresenter = CardPresenter()
+
+        val listRowAdapter = ArrayObjectAdapter(cardPresenter)
+        for(anime in animeList) {
+            listRowAdapter.add(anime)
+        }
+        val header = HeaderItem(0, "Anime")
+        rowsAdapter.add(ListRow(header, listRowAdapter))
+        adapter = rowsAdapter
+    }
+
+    fun getAnimeList(): List<Anime> {
+        // Replace this with your actual data loading logic
+        return listOf(
+            Anime("Anime Title 1", "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg")
+        )
     }
 
     private fun setupUIElements() {
         title = "App Name"
-        headersState = HEADERS_DISABLED
+        headersState = HEADERS_HIDDEN
         isHeadersTransitionOnBackEnabled = true
         brandColor = ContextCompat.getColor(requireActivity(), R.color.brand_color)
         searchAffordanceColor = ContextCompat.getColor(requireActivity(), R.color.search_affordance)
