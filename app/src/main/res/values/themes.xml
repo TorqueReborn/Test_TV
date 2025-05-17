@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.TestTV" parent="@style/Theme.Leanback" />
+</resources>
