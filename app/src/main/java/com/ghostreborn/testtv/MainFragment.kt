@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
@@ -33,6 +34,9 @@ class MainFragment: BrowseSupportFragment() {
         mMetrics = DisplayMetrics()
         updateBackground(Anime("One Piece", "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg"))
         loadRows()
+        view?.findViewById<ViewGroup>(androidx.leanback.R.id.browse_container_dock)?.apply {
+            setPadding(0,200, 0 , 0)
+        }
     }
 
     private fun loadRows() {
