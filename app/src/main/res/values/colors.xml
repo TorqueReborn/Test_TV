@@ -1,3 +1,4 @@
 <resources>
     <color name="brand_color">#383838</color>
+    <color name="search_affordance">#993737</color>
 </resources>
